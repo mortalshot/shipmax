@@ -1,0 +1,202 @@
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transition: visibility 0.8s ease 0s;
+	visibility: hidden;
+	pointer-events: none;
+
+	// .popup_show
+	&_show {
+		z-index: 150;
+		visibility: visible;
+		overflow: auto;
+		pointer-events: auto;
+
+		.popup__content {
+			visibility: visible;
+			transform: scale(1);
+		}
+	}
+
+	// .popup__wrapper
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-height: 100%;
+		flex: 1 1 auto;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	// .popup__content
+	&__content {
+		visibility: hidden;
+		transform: scale(0);
+		background-color: #fff;
+		width: 100%;
+		height: 100%;
+		min-height: 100vh;
+		display: grid;
+		transition: transform 0.3s ease 0s;
+
+		@media (min-width: $mobile) {
+			&::before {
+				content: "";
+				position: absolute;
+				right: 0;
+				top: 0;
+				display: block;
+				width: percent(641, 1280);
+				height: 100%;
+				background: url(../img/popup-bg.png) no-repeat left/cover;
+				z-index: -1;
+			}
+		}
+
+		.lock & {
+			visibility: visible;
+		}
+	}
+
+	// .popup__close
+	&__close {
+		outline: 0;
+	}
+
+	// .popup__text
+	&__text {
+		height: 100%;
+	}
+
+	// .popup__container
+	&__container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	// .popup__top
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@include adaptiveValue("padding-top", 40, 24);
+		@include adaptiveValue("padding-bottom", 40, 24);
+	}
+
+	// .popup__logo
+	&__logo {
+		@include adaptiveValue("max-width", 130, 89);
+	}
+
+	// .popup__body
+	&__body {
+		flex: 1;
+		display: grid;
+		align-content: center;
+		@include adaptiveValue("row-gap", 48, 24);
+
+		@media (min-width: $mobile) {
+			max-width: rem(528);
+		}
+
+		// .popup__body_login
+		&_login {
+			@media (min-width: $mobile) {
+				max-width: rem(400);
+			}
+		}
+	}
+
+	// .popup__heading
+	&__heading {
+	}
+
+	// .popup__footer
+	&__footer {
+		@include adaptiveValue("padding-top", 60, 32);
+		@include adaptiveValue("padding-bottom", 60, 32);
+	}
+}
+
+.password {
+	// .password__input
+	&__input {
+		margin-bottom: rem(8);
+		position: relative;
+	}
+
+	// .password__button
+	&__button {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: rem(18);
+
+		&::before {
+			content: "\e903";
+			@extend %ic;
+			display: block;
+			font-size: rem(20);
+			color: $Grey;
+
+			._show & {
+				content: "\e904";
+			}
+		}
+
+		@media (any-hover: hover) {
+			transition: $transition ease color 0s;
+			&:hover {
+				&::before {
+					color: $Blue;
+				}
+			}
+		}
+	}
+
+	// .password__actions
+	&__actions {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	// .password__remember
+	&__remember {
+		font-weight: 400;
+		font-size: rem(12);
+		line-height: math.div(16, 12);
+
+		&:not(:last-child) {
+			margin-bottom: 0;
+		}
+	}
+
+	// .password__reset
+	&__reset {
+		display: inline-block;
+		font-weight: 500;
+		font-size: rem(12);
+		line-height: math.div(16, 12);
+		color: #3970d4;
+	}
+	a.password__reset:link,
+	a.password__reset:visited {
+		text-decoration: underline from-font;
+		text-underline-offset: 3px;
+		transition: $transition ease text-decoration 0s;
+
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline transparent from-font;
+			}
+		}
+	}
+}

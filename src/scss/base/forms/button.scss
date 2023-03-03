@@ -1,0 +1,59 @@
+//<BUTTONS (a.btn+tab)>
+// Снипет (HTML): btn
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
+	gap: rem(10);
+	font-weight: 700;
+	font-size: rem(14);
+	line-height: math.div(20, 14);
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: em(0.42, 14);
+	cursor: pointer;
+	padding: rem(14) rem(32);
+	border-radius: rem(40) !important;
+	border: 1px solid transparent;
+
+	&::before {
+		@include adaptiveValue("font-size", 20, 16);		
+	}
+
+	i {
+		font-size: rem(20);
+	}
+
+	&[type="submit"] {
+		-webkit-appearance: none;
+	}
+
+	// .btn_border
+	&_border {
+		border-color: $Blue;
+
+		@media (any-hover: hover) {
+			transition: $transition ease all 0s;
+			&:hover {
+				border-color: $Blue;
+				background-color: rgba($color: $mainColor, $alpha: 0.1);
+			}
+		}
+	}
+
+	// .btn_bg
+	&_bg {
+		color: $White;
+		border-color: $Blue;
+		background-color: $Blue;
+
+		@media (any-hover: hover) {
+			transition: $transition ease all 0s;
+			&:hover {
+				background-color: rgba($color: $Blue, $alpha: 0.85);
+			}
+		}
+	}
+}

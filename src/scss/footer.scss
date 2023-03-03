@@ -1,0 +1,162 @@
+//footer ====================================================================================================
+.footer {
+   background-color: $White;
+   @include adaptiveValue("padding-top", 60, 20);
+   @include adaptiveValue("padding-bottom", 60, 20);
+
+   // .footer__container
+   &__container {
+      display: grid;
+      @include adaptiveValue("row-gap", 64, 36);
+   }
+
+   // .footer__top, .footer__bottom
+   &__top,
+   &__bottom {
+      display: grid;
+      gap: rem(16);
+
+      @media (min-width: $mobileM) {
+         grid-template-columns: 1fr 50% 1fr;
+      }
+      @media (min-width: $mobile) {
+         grid-template-columns: 1fr percent(364, 1160) 1fr;
+      }
+   }
+
+   // .footer__top
+   &__top {
+      @media (max-width: $mobileM) {
+         display: grid;
+         grid-template-areas:
+            "left right"
+            "center center";
+         row-gap: rem(40);
+      }
+   }
+
+   // .footer__left
+   &__left {
+      @media (max-width: $mobileM) {
+         grid-area: left;
+      }
+   }
+
+   // .footer__logo
+   &__logo {
+      display: inline-flex;
+      @include adaptiveValue("max-width", 230, 141, 1280, 768, 1);
+   }
+
+   // .footer__center
+   &__center {
+      @media (min-width: $mobileM) and (max-width: $mobile) {
+         display: grid;
+         justify-content: center;
+      }
+      @media (max-width: $mobileM) {
+         grid-area: center;
+      }
+   }
+
+   // .footer__menu
+   &__menu {
+      display: flex;
+      @include adaptiveValue("column-gap", 100, 20, 1280, 992, 1);
+
+      li {
+         &:not(:last-child) {
+            @include adaptiveValue("margin-bottom", 24, 16);
+         }
+      }
+
+      a {
+         @include adaptiveValue("font-size", 14, 12);
+         line-height: math.div(19, 12);
+         color: $DBlue;
+         text-decoration: underline transparent from-font;
+         text-underline-offset: 3px;
+         transition: $transition ease text-decoration 0s;
+
+         @media (any-hover: hover) {
+            &:hover {
+               text-decoration: underline from-font;
+            }
+         }
+      }
+   }
+
+   // .footer__right
+   &__right {
+      display: grid;
+      justify-content: flex-end;
+
+      @media (max-width: $mobileM) {
+         grid-area: right;
+      }
+   }
+
+   // .footer__button
+   &__button {
+      .btn {
+         padding: rem(10) rem(18);
+         text-transform: none;
+      }
+   }
+
+   // .footer__bottom
+   &__bottom {
+      align-items: center;
+
+      @media (max-width: $mobileM) {
+         display: grid;
+         grid-template-areas:
+            "center right"
+            "left left";
+         row-gap: rem(32);
+      }
+   }
+
+   // .footer__privacy
+   &__privacy {
+      font-weight: 400;
+      font-size: rem(10);
+      line-height: math.div(14, 10);
+      color: $Grey;
+
+      @media (max-width: $mobileM) {
+         text-align: center;
+      }
+   }
+
+   // .footer__links
+   &__links {
+      display: flex;
+      align-items: center;
+      @include adaptiveValue("column-gap", 32, 16, 1280, 992, 1);
+
+      a {
+         font-weight: 400;
+         font-size: rem(12);
+         line-height: math.div(16, 12);
+         color: $Grey;
+
+         text-decoration: underline from-font;
+         text-underline-offset: 3px;
+         transition: $transition ease text-decoration 0s;
+
+         @media (any-hover: hover) {
+            &:hover {
+               text-decoration: underline transparent from-font;
+            }
+         }
+      }
+   }
+
+   .kan {
+      @include adaptiveValue("max-width", 78, 52);
+      display: inline-flex;
+   }
+}
+
+//====================================================================================================
